@@ -8,12 +8,25 @@ import os
 
 st.markdown("""
 <style>
+    /* Títulos e sidebar */
     h1, h2, h3 { color: #ff69b4; }
     [data-testid="stSidebar"] {
         background-color: #ffe4e9;
     }
     [data-testid="stSidebar"] h2, [data-testid="stSidebar"] label, [data-testid="stSidebar"] div {
         color: #ff69b4;
+    }
+
+    /* Chips (elementos selecionados nos multiselect) */
+    .stMultiSelect [data-baseweb="tag"] {
+        background-color: #c71585 !important; /* rosa escuro */
+        color: white !important;
+        border-radius: 8px;
+    }
+
+    /* Botões de remoção dos chips (o "x") */
+    .stMultiSelect [data-baseweb="tag"] svg {
+        fill: white !important;
     }
 </style>
 """, unsafe_allow_html=True)

@@ -18,10 +18,9 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 st.markdown("""
 <style>
     /* Cor geral dos títulos */
-    h1, h2, h3 {
-        color: #ff69b4;
-    }
-    /* Caixa customizada para avisos */
+    h1 { color: #ff69b4; }
+
+    /* Caixa para mensagens */
     .pink-box {
         padding: 10px;
         border-radius: 10px;
@@ -31,7 +30,8 @@ st.markdown("""
         text-align: center;
         margin-bottom: 15px;
     }
-    /* Caixa para destaque principal */
+
+    /* Caixa de destaque principal */
     .pink-highlight {
         padding: 10px;
         border-radius: 10px;
@@ -40,6 +40,16 @@ st.markdown("""
         font-weight: bold;
         text-align: center;
         margin-bottom: 15px;
+    }
+
+    /* Alterar cor do slider para rosa pink */
+    .stSlider [role="slider"] {
+        background-color: #ff69b4 !important;
+    }
+
+    /* Linha do slider */
+    .stSlider > div[data-baseweb="slider"] > div {
+        color: #ff69b4 !important;
     }
 </style>
 """, unsafe_allow_html=True)
