@@ -60,7 +60,7 @@ if os.path.exists(arquivo_predicoes):
         default=generos
     )
 
-    tipos_obesidade = df["Predição_Obesidade"].unique().tolist()
+    tipos_obesidade = df["Predicao_Obesidade"].unique().tolist()
     tipo_selecionado = st.sidebar.multiselect(
         "Filtrar por tipo de obesidade",
         options=tipos_obesidade,
@@ -72,13 +72,13 @@ if os.path.exists(arquivo_predicoes):
     if genero_selecionado:
         df_filtrado = df_filtrado[df_filtrado["Gender"].isin(genero_selecionado)]
     if tipo_selecionado:
-        df_filtrado = df_filtrado[df_filtrado["Predição_Obesidade"].isin(tipo_selecionado)]
+        df_filtrado = df_filtrado[df_filtrado["Predicao_Obesidade"].isin(tipo_selecionado)]
 
     
     # Cards de métricas
     
     total_pacientes = len(df_filtrado)
-    obesidade_confirmada = df_filtrado["Predição_Obesidade"].isin(
+    obesidade_confirmada = df_filtrado["Predicao_Obesidade"].isin(
         ["Obesity_Type_I", "Obesity_Type_II", "Obesity_Type_III"]
     ).sum()
     media_peso = df_filtrado["Weight"].mean() if "Weight" in df_filtrado.columns else 0
@@ -99,7 +99,7 @@ if os.path.exists(arquivo_predicoes):
     
     st.subheader("Distribuição das Classes Previstas")
     fig, ax = plt.subplots(figsize=(8,4))
-    df_filtrado["Predição_Obesidade"].value_counts().plot(
+    df_filtrado["Predicao_Obesidade"].value_counts().plot(
         kind="bar", ax=ax, color="#ff69b4"
     )
     plt.title("Distribuição das Classes de Obesidade", color="#ff69b4", fontsize=14)
@@ -115,8 +115,8 @@ if os.path.exists(arquivo_predicoes):
     # Cálculo de correlação com variável-alvo
     # Mapear variável de predição para números (para calcular correlação)
     df_corr = df_filtrado.copy()
-    class_mapping = {cls: i for i, cls in enumerate(df_corr["Predição_Obesidade"].unique())}
-    df_corr["Obesidade_Num"] = df_corr["Predição_Obesidade"].map(class_mapping)
+    class_mapping = {cls: i for i, cls in enumerate(df_corr["Predicao_Obesidade"].unique())}
+    df_corr["Obesidade_Num"] = df_corr["Predicao_Obesidade"].map(class_mapping)
 
     # Selecionar apenas colunas numéricas
     numeric_cols = df_corr.select_dtypes(include=["number"]).columns.tolist()
@@ -130,27 +130,36 @@ if os.path.exists(arquivo_predicoes):
     # Top 5 variáveis mais correlacionadas
     top5_vars = correlations.head(5)
 
-    # ===========================
     # Tabela de correlação
-    # ===========================
     st.subheader("Top 5 Variáveis mais Correlacionadas com Obesidade")
     st.table(top5_vars.reset_index().rename(columns={"index": "Variável", 0: "Correlação Absoluta"}))
 
-    # ===========================
     # Gráficos de distribuição para variáveis mais correlacionadas
-    # ===========================
-    st.subheader("Distribuição das Variáveis Mais Correlacionadas")
+    st.subheader("Distribuição das Variáveis Mais Correlacionadas por Classe de Obesidade")
 
-    for var in top5_vars.index:
-        st.write(f"**{var}**")
-        fig, ax = plt.subplots(figsize=(6,3))
-        df_corr[var].hist(ax=ax, color="#c71585", edgecolor="black")
-        ax.set_title(f"Distribuição de {var}", color="#c71585")
-        st.pyplot(fig)
+for var in top5_vars.index:
+    st.write(f"**{var}**")
+
+    fig, ax = plt.subplots(figsize=(6, 3))
+
+    # Gráfico segmentado por categoria da variável alvo
+    for classe in df_corr["Predicao_Obesidade"].unique():
+        subset = df_corr[df_corr["Predicao_Obesidade"] == classe]
+        ax.hist(
+            subset[var],
+            bins=10,
+            alpha=0.6,
+            label=classe,
+            edgecolor="black"
+        )
+
+    ax.set_title(f"Distribuição de {var} por Classe de Obesidade", color="#c71585")
+    ax.legend(title="Classe", fontsize=8)
+    ax.grid(False)
+    st.pyplot(fig)
 
 
     # Tabela Completa
-    
     st.subheader("Tabela Anaíltica - Informações dos Pacientes")
     st.dataframe(df_filtrado)
 

@@ -139,7 +139,7 @@ if st.button("Prever"):
 
     # Salvar previsão no CSV
     novo_paciente_df = pd.DataFrame([dados_paciente])
-    novo_paciente_df["Predição_Obesidade"] = resultado
+    novo_paciente_df["Predicao_Obesidade"] = resultado
 
     arquivo_predicoes = "predicoes.csv"
     if not os.path.exists(arquivo_predicoes):
@@ -147,4 +147,4 @@ if st.button("Prever"):
     else:
         novo_paciente_df.to_csv(arquivo_predicoes, mode='a', header=False, index=False)
 
-    st.markdown("<div class='pink-box'>Previsão salva! Confira no dashboard de insights.</div>", unsafe_allow_html=True)
+    st.markdown("<div class='pink-box'>Previsão salva! Confira no Dashboard de Resultados.</div>", unsafe_allow_html=True)

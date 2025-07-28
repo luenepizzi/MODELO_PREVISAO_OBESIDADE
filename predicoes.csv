@@ -1,4 +1,4 @@
-Gender,Age,Height,Weight,family_history,FAVC,FCVC,NCP,CAEC,SMOKE,CH2O,SCC,FAF,TUE,CALC,MTRANS,Predição_Obesidade
+Gender,Age,Height,Weight,family_history,FAVC,FCVC,NCP,CAEC,SMOKE,CH2O,SCC,FAF,TUE,CALC,MTRANS,Predicao_Obesidade
 Female,21,1.51,95,yes,yes,2.0,3,no,yes,2.0,yes,1.0,1.0,no,Walking,Obesity_Type_I
 Male,25,1.7,70,yes,yes,2.0,3,no,yes,2.0,yes,1.0,1.0,no,Walking,Normal_Weight
 Male,25,1.7,70,yes,yes,2.0,3,no,yes,2.0,yes,1.0,1.0,no,Walking,Normal_Weight
