@@ -13,6 +13,38 @@ def feature_engineering(df):
 with open("pipeline_random_forest.pkl", "rb") as f:
     pipeline = pickle.load(f)
 
+st.set_option('deprecation.showPyplotGlobalUse', False)
+
+st.markdown("""
+<style>
+    /* Cor geral dos títulos */
+    h1, h2, h3 {
+        color: #ff69b4;
+    }
+    /* Caixa customizada para avisos */
+    .pink-box {
+        padding: 10px;
+        border-radius: 10px;
+        background-color: #ffb6c1;
+        color: #8b0057;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 15px;
+    }
+    /* Caixa para destaque principal */
+    .pink-highlight {
+        padding: 10px;
+        border-radius: 10px;
+        background-color: #ff69b4;
+        color: white;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 15px;
+    }
+</style>
+""", unsafe_allow_html=True)
+
+
 # Função para previsão utilizando dados do paciente
 
 def prever_paciente(dados):
@@ -80,4 +112,4 @@ if st.button("Prever"):
     else:
         novo_paciente_df.to_csv(arquivo_predicoes, mode='a', header=False, index=False)
 
-    st.info("Previsão salva com sucesso! Verifique o dashboard de insights.")
+    st.info("Previsão salva com sucesso! Verifique o dashboard de resultados.")
