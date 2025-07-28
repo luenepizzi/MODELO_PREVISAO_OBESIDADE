@@ -46,16 +46,18 @@ def dashboard_section(df, titulo):
 
     generos = df["Gender"].unique().tolist() if "Gender" in df.columns else []
     genero_selecionado = st.sidebar.multiselect(
-        "Filtrar por gênero",
-        options=generos,
-        default=generos
+    "Filtrar por gênero",
+    options=generos,
+    default=generos,
+    key=f"genero_{titulo}"   # chave única baseada no título da aba
     )
 
     tipos_obesidade = df["Predicao_Obesidade"].unique().tolist()
     tipo_selecionado = st.sidebar.multiselect(
-        "Filtrar por tipo de obesidade",
-        options=tipos_obesidade,
-        default=tipos_obesidade
+    "Filtrar por tipo de obesidade",
+    options=tipos_obesidade,
+    default=tipos_obesidade,
+    key=f"tipo_{titulo}"     # chave única baseada no título da aba
     )
 
     # Aplicar filtros
