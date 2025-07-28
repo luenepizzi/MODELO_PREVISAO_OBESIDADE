@@ -100,7 +100,10 @@ if st.button("Prever"):
     }
 
     resultado = prever_paciente(dados_paciente)
-    st.success(f"Classe prevista: {resultado}")
+    
+    # Caixa de destaque para resultado
+    st.markdown(f"<div class='pink-highlight'>Classe prevista: {resultado}</div>", unsafe_allow_html=True)
+
 
     # Salvar previsão no CSV
     novo_paciente_df = pd.DataFrame([dados_paciente])
@@ -112,4 +115,4 @@ if st.button("Prever"):
     else:
         novo_paciente_df.to_csv(arquivo_predicoes, mode='a', header=False, index=False)
 
-    st.info("Previsão salva com sucesso! Verifique o dashboard de resultados.")
+    st.markdown("<div class='pink-box'>Previsão salva! Confira no dashboard de insights.</div>", unsafe_allow_html=True)
