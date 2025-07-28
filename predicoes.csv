@@ -10,3 +10,11 @@ Female,18,1.92,70,no,yes,1.48,3,no,yes,1.45,yes,5.0,3.0,Frequently,Bike,Normal_W
 Female,20,1.45,79,yes,yes,2.69,5,Always,yes,2.14,yes,1.22,3.0,no,Public_Transportation,Obesity_Type_I
 Male,33,1.73,201,yes,yes,2.69,5,Always,yes,2.14,yes,1.22,3.0,no,Automobile,Obesity_Type_II
 Female,55,1.65,245,no,yes,1.04,5,Always,no,1.01,no,0.0,1.0,no,Automobile,Obesity_Type_II
+Male,17,1.76,70,yes,no,1,3,Frequently,no,3,no,3,3,no,Walking,Normal_Weight
+Female,15,1.45,82,no,yes,2,5,Always,no,1,no,0,3,no,Public_Transportation,Obesity_Type_I
+Female,69,1.73,102,yes,yes,3,4,Frequently,yes,2,no,1,2,Sometimes,Automobile,Obesity_Type_I
+Female,55,1.65,40,no,yes,1,2,no,yes,1,yes,3,3,Frequently,Motorbike,Insufficient_Weight
+Female,36,1.58,55,no,yes,2,5,Always,no,2,yes,5,2,Sometimes,Walking,Normal_Weight
+Male,48,1.9,98,yes,yes,3,4,Frequently,yes,1,no,3,0,Sometimes,Bike,Overweight_Level_II
+Male,21,1.82,70,no,no,3,3,Sometimes,no,3,yes,4,2,no,Walking,Normal_Weight
+Male,79,1.74,65,no,yes,2,3,no,yes,1,no,0,0,Always,Automobile,Normal_Weight
