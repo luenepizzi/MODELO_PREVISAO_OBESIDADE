@@ -122,7 +122,7 @@ def dashboard_section(df, titulo):
 
 # Título principal
 
-st.markdown("<h1>Previsão de Obesidade - Dashboard</h1>", unsafe_allow_html=True)
+st.markdown("<h1>Previsão de Obesidade - Resultados</h1>", unsafe_allow_html=True)
 
 
 # Abas
