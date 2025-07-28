@@ -84,13 +84,15 @@ if os.path.exists(arquivo_predicoes):
     media_peso = df_filtrado["Weight"].mean() if "Weight" in df_filtrado.columns else 0
     media_altura = df_filtrado["Height"].mean() if "Height" in df_filtrado.columns else 0
     media_idade = df_filtrado["Age"].mean() if "Age" in df_filtrado.columns else 0
+    media_imc = df_filtrado["IMC"].mean() if "IMC" in df_filtrado.columns else 0
 
-    col1, col2, col3, col4, col5 = st.columns(5)
+    col1, col2, col3, col4, col5, col6 = st.columns(6)
     col1.metric("Total de Pacientes", f"{total_pacientes}")
     col2.metric("Obesidade Confirmada", f"{obesidade_confirmada}")
     col3.metric("Peso Médio (kg)", f"{media_peso:.1f}")
     col4.metric("Altura Média (m)", f"{media_altura:.2f}")
     col5.metric("Idade Média (anos)", f"{media_idade:.1f}")
+    col6.metric("IMC Médio", f"{media_imc:.2f}")
 
     
     # Gráfico de distribuição

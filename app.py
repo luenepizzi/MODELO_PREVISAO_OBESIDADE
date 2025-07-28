@@ -42,14 +42,36 @@ st.markdown("""
         margin-bottom: 15px;
     }
 
-    /* Alterar cor do slider para rosa pink */
+    /* Alterar cor do slider para rosa escuro */
     .stSlider [role="slider"] {
-        background-color: #ff69b4 !important;
+        background-color: #c71585 !important; /* bolinha */
     }
 
-    /* Linha do slider */
+    /* Linha ativa do slider */
     .stSlider > div[data-baseweb="slider"] > div {
-        color: #ff69b4 !important;
+        color: #c71585 !important; /* barra */
+    }
+
+    /* Número exibido no slider (valor atual) */
+    .stSlider span {
+        color: #c71585 !important;
+        font-weight: bold;
+    }
+
+    /* Botão rosa customizado */
+    div.stButton > button:first-child {
+        background-color: #ff69b4;
+        color: white;
+        border-radius: 10px;
+        padding: 0.6em 1em;
+        border: none;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    div.stButton > button:first-child:hover {
+        background-color: #ff85c1;
+        color: white;
+        border: none;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -64,7 +86,7 @@ def prever_paciente(dados):
 
 # Interface Streamlit
 
-st.title("Previsão de Obesidade")
+st.title("Sistema de Diagnósticos - Previsão de Obesidade")
 
 st.write("""
 Insira os dados do paciente para prever a categoria de obesidade:
