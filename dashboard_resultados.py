@@ -112,8 +112,43 @@ if os.path.exists(arquivo_predicoes):
     st.subheader("Estatísticas Descritivas")
     st.write(df_filtrado.describe(include='number'))
 
+    # Cálculo de correlação com variável-alvo
+    # Mapear variável de predição para números (para calcular correlação)
+    df_corr = df_filtrado.copy()
+    class_mapping = {cls: i for i, cls in enumerate(df_corr["Predição_Obesidade"].unique())}
+    df_corr["Obesidade_Num"] = df_corr["Predição_Obesidade"].map(class_mapping)
 
-    
+    # Selecionar apenas colunas numéricas
+    numeric_cols = df_corr.select_dtypes(include=["number"]).columns.tolist()
+
+    # Remover coluna da variável target numérica para evitar auto-correlação
+    numeric_cols.remove("Obesidade_Num")
+
+    # Calcular correlações
+    correlations = df_corr[numeric_cols].corrwith(df_corr["Obesidade_Num"]).abs().sort_values(ascending=False)
+
+    # Top 5 variáveis mais correlacionadas
+    top5_vars = correlations.head(5)
+
+    # ===========================
+    # Tabela de correlação
+    # ===========================
+    st.subheader("Top 5 Variáveis mais Correlacionadas com Obesidade")
+    st.table(top5_vars.reset_index().rename(columns={"index": "Variável", 0: "Correlação Absoluta"}))
+
+    # ===========================
+    # Gráficos de distribuição para variáveis mais correlacionadas
+    # ===========================
+    st.subheader("Distribuição das Variáveis Mais Correlacionadas")
+
+    for var in top5_vars.index:
+        st.write(f"**{var}**")
+        fig, ax = plt.subplots(figsize=(6,3))
+        df_corr[var].hist(ax=ax, color="#c71585", edgecolor="black")
+        ax.set_title(f"Distribuição de {var}", color="#c71585")
+        st.pyplot(fig)
+
+
     # Tabela Completa
     
     st.subheader("Tabela Anaíltica - Informações dos Pacientes")
