@@ -1,0 +1,12 @@
+Gender,Age,Height,Weight,family_history,FAVC,FCVC,NCP,CAEC,SMOKE,CH2O,SCC,FAF,TUE,CALC,MTRANS,Predição_Obesidade
+Female,21,1.51,95,yes,yes,2.0,3,no,yes,2.0,yes,1.0,1.0,no,Walking,Obesity_Type_I
+Male,25,1.7,70,yes,yes,2.0,3,no,yes,2.0,yes,1.0,1.0,no,Walking,Normal_Weight
+Male,25,1.7,70,yes,yes,2.0,3,no,yes,2.0,yes,1.0,1.0,no,Walking,Normal_Weight
+Female,31,1.56,64,no,yes,2.0,3,no,yes,2.0,yes,2.96,3.0,Sometimes,Public_Transportation,Overweight_Level_I
+Male,78,1.75,88,yes,no,3.0,4,Sometimes,yes,3.0,no,0.0,0.0,Always,Automobile,Overweight_Level_II
+Male,40,1.62,99,yes,yes,1.0,5,Always,yes,1.14,no,0.0,3.0,Sometimes,Automobile,Obesity_Type_I
+Female,45,1.7,164,yes,yes,2.04,5,Always,no,2.01,no,0.0,3.0,no,Automobile,Obesity_Type_II
+Female,18,1.92,70,no,yes,1.48,3,no,yes,1.45,yes,5.0,3.0,Frequently,Bike,Normal_Weight
+Female,20,1.45,79,yes,yes,2.69,5,Always,yes,2.14,yes,1.22,3.0,no,Public_Transportation,Obesity_Type_I
+Male,33,1.73,201,yes,yes,2.69,5,Always,yes,2.14,yes,1.22,3.0,no,Automobile,Obesity_Type_II
+Female,55,1.65,245,no,yes,1.04,5,Always,no,1.01,no,0.0,1.0,no,Automobile,Obesity_Type_II
