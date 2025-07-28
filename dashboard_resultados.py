@@ -52,7 +52,7 @@ def dashboard_section(df, titulo):
         key=f"genero_{titulo}"  # <-- Chave única
     )
 
-    tipos_obesidade = df["Predicao_Obesidade"].unique().tolist()
+    tipos_obesidade = df["Obesity"].unique().tolist()
     tipo_selecionado = st.sidebar.multiselect(
         "Filtrar por tipo de obesidade",
         options=tipos_obesidade,
