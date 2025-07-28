@@ -3,7 +3,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import os
 
-### Estilo do Dash
+
+# Estilos CSS
 
 st.markdown("""
 <style>
@@ -11,8 +12,6 @@ st.markdown("""
     h1, h2, h3 { color: #ff69b4; }
     [data-testid="stSidebar"] {
         background-color: #ffe4e9;
-        max-height: 90vh; /* limita altura da barra lateral */
-        overflow-y: auto; /* adiciona scroll vertical */
     }
     [data-testid="stSidebar"] h2, [data-testid="stSidebar"] label, [data-testid="stSidebar"] div {
         color: #ff69b4;
@@ -31,6 +30,7 @@ st.markdown("""
     }
 </style>
 """, unsafe_allow_html=True)
+
 
 # Função para criar seção de dashboard
 
