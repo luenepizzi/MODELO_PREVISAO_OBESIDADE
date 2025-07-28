@@ -63,3 +63,15 @@ if st.button("Prever"):
 
     resultado = prever_paciente(dados_paciente)
     st.success(f"Classe prevista: {resultado}")
+
+    # Salvar previsão no CSV
+    novo_paciente_df = pd.DataFrame([dados_paciente])
+    novo_paciente_df["Predição_Obesidade"] = resultado
+
+    arquivo_predicoes = "predicoes.csv"
+    if not os.path.exists(arquivo_predicoes):
+        novo_paciente_df.to_csv(arquivo_predicoes, index=False)
+    else:
+        novo_paciente_df.to_csv(arquivo_predicoes, mode='a', header=False, index=False)
+
+    st.info("Previsão salva com sucesso! Verifique o dashboard de insights.")
