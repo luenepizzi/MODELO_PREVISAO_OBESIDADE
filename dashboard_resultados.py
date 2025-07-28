@@ -134,40 +134,6 @@ if os.path.exists(arquivo_predicoes):
     st.subheader("Top 5 Variáveis mais Correlacionadas com Obesidade")
     st.table(top5_vars.reset_index().rename(columns={"index": "Variável", 0: "Correlação Absoluta"}))
 
-    # Gráficos de distribuição para variáveis mais correlacionadas
-    st.subheader("Distribuição das Variáveis Mais Correlacionadas por Classe de Obesidade")
-
-    # Paleta personalizada: rosa, roxo e cinza
-palette = ["#ff69b4", "#8a2be2", "#808080"]
-
-for var in top5_vars.index:
-    st.write(f"**{var}**")
-
-    fig, ax = plt.subplots(figsize=(6, 3))
-
-    # Classes de obesidade
-    classes = df_corr["Predicao_Obesidade"].unique()
-
-    # Largura igual para todas as barras
-    bins = 10
-
-    # Plotar histogramas sobrepostos com cores personalizadas
-    for i, classe in enumerate(classes):
-        subset = df_corr[df_corr["Predicao_Obesidade"] == classe]
-        ax.hist(
-            subset[var],
-            bins=bins,
-            alpha=0.6,
-            label=classe,
-            edgecolor="black",
-            color=palette[i % len(palette)]  # cores cíclicas
-        )
-
-        ax.set_title(f"Distribuição de {var} por Classe de Obesidade", color="#c71585")
-        ax.legend(title="Classe", fontsize=8)
-        ax.grid(False)
-        st.pyplot(fig)
-
     # Tabela Completa
     st.subheader("Tabela Anaíltica - Informações dos Pacientes")
     st.dataframe(df_filtrado)
