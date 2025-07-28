@@ -32,7 +32,6 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
-
 # Função para criar seção de dashboard
 
 def dashboard_section(df, titulo):
@@ -49,15 +48,15 @@ def dashboard_section(df, titulo):
         "Filtrar por gênero",
         options=generos,
         default=generos,
-        key=f"genero_{titulo}"  # <-- Chave única
+        key=f"genero_{titulo}"  # chave única para evitar erro DuplicateWidgetID
     )
 
-    tipos_obesidade = df["Obesity"].unique().tolist()
+    tipos_obesidade = df["Predicao_Obesidade"].unique().tolist()
     tipo_selecionado = st.sidebar.multiselect(
         "Filtrar por tipo de obesidade",
         options=tipos_obesidade,
         default=tipos_obesidade,
-        key=f"tipo_{titulo}"  # <-- Chave única
+        key=f"tipo_{titulo}"   # chave única para evitar erro DuplicateWidgetID
     )
 
     # Aplicar filtros
@@ -106,7 +105,8 @@ def dashboard_section(df, titulo):
     df_corr["Obesidade_Num"] = df_corr["Predicao_Obesidade"].map(class_mapping)
 
     numeric_cols = df_corr.select_dtypes(include=["number"]).columns.tolist()
-    numeric_cols.remove("Obesidade_Num")
+    if "Obesidade_Num" in numeric_cols:
+        numeric_cols.remove("Obesidade_Num")
 
     correlations = df_corr[numeric_cols].corrwith(df_corr["Obesidade_Num"]).abs().sort_values(ascending=False)
     top5_vars = correlations.head(5)
@@ -122,28 +122,41 @@ def dashboard_section(df, titulo):
 
 # Título principal
 
-st.markdown("<h1>Previsão de Obesidade</h1>", unsafe_allow_html=True)
+st.markdown("<h1>Previsão de Obesidade - Dashboard</h1>", unsafe_allow_html=True)
 
 
 # Abas
 
-aba1, aba2 = st.tabs(["Resultados Previstos", "Base Original"])
+aba1, aba2 = st.tabs(["Resultados - Previsão", "Base Original"])
+
 
 # Aba 1 - Predições
+
 with aba1:
     arquivo_predicoes = "predicoes.csv"
     if os.path.exists(arquivo_predicoes):
         df_pred = pd.read_csv(arquivo_predicoes)
+
+        # Padronizar nome da coluna de obesidade
+        if "Obesity" in df_pred.columns:
+            df_pred.rename(columns={"Obesity": "Predicao_Obesidade"}, inplace=True)
+
         dashboard_section(df_pred, "Predições")
     else:
         st.warning("Nenhum dado encontrado! Inclua as informações dos seus pacientes no aplicativo de previsão.")
 
+
 # Aba 2 - Base Original
+
 with aba2:
     arquivo_original = "Obesity.csv"
     if os.path.exists(arquivo_original):
         df_original = pd.read_csv(arquivo_original)
+
+        # Padronizar nome da coluna de obesidade
+        if "Obesity" in df_original.columns:
+            df_original.rename(columns={"Obesity": "Predicao_Obesidade"}, inplace=True)
+
         dashboard_section(df_original, "Base Original")
     else:
-        st.warning("Nenhuma base original encontrada! Verifique se o arquivo 'Obesity.csv' está na pasta do app.")
-
+        st.warning("Nenhuma base original encontrada! Verifique se o arquivo 'Obesity.csv' está na pasta.")
