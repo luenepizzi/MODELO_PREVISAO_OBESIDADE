@@ -2,6 +2,11 @@ import streamlit as st
 import pandas as pd
 import pickle
 
+
+def feature_engineering(df):
+    df["IMC"] = df["Weight"] / (df["Height"] ** 2)
+    return df
+
 # Carregar modelo
 
 with open("pipeline_random_forest.pkl", "rb") as f:
